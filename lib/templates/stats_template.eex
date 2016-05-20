@@ -1,0 +1,28 @@
+defmodule <%= String.capitalize(@service_name) %>Stats do
+
+  def stats() do
+    ["lib","data","<%= String.downcase(@service_name) %>.csv"]
+    |> Path.join
+    |> File.read!
+    |> String.strip
+    |> String.split("\n")
+    |> remove_header()
+    |> Enum.map(&read_values/1)
+    |> Enum.sort(&(popularity_comparison(&1,&2)))
+  end
+
+  defp remove_header([h|t]), do: t
+
+  defp read_values(line) do
+    line
+    |> String.split(",")
+<%= if not @name_first do %>
+    |> Enum.reverse
+<% end %>
+  end
+
+  defp popularity_comparison([_lang_a,value_a] = a, [_lang_b,value_b] = b) do
+    value_a > value_b
+  end
+
+end

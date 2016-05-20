@@ -1,2 +1,0 @@
-defmodule CodeGen do
-end
