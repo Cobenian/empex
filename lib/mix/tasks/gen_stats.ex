@@ -2,6 +2,7 @@ defmodule Mix.Tasks.Gen.Stats do
   use Mix.Task
 
   @shortdoc "Generate stats for the specified service."
+
   @moduledoc """
 
   Generate stats for the specified service.
@@ -22,7 +23,6 @@ defmodule Mix.Tasks.Gen.Stats do
   ```
 
   """
-
   def run(args) do
     case args do
       [] -> usage()
